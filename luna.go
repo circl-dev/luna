@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/moonwalker/luna/cmd"
+	"github.com/gig/luna/cmd"
 )
 
 var (

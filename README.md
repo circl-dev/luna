@@ -19,7 +19,7 @@ On CI: detect which services has been changed, and package only those.
 ## Install or update
 
 ```shell
-$ go get -u github.com/moonwalker/luna
+$ go get -u github.com/gig/luna
 ```
 
 ## Development

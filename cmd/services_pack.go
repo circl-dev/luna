@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/moonwalker/luna/support"
+	"github.com/gig/luna/support"
 	"github.com/spf13/cobra"
 )
 

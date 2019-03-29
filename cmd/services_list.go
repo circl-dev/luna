@@ -6,7 +6,7 @@ import (
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 
-	"github.com/moonwalker/luna/support"
+	"github.com/gig/luna/support"
 )
 
 var (
