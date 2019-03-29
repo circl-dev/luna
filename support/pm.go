@@ -149,7 +149,20 @@ func (pm *PM) watch(svc *service) *Batcher {
 		fmt.Println(err)
 	}
 
-	watcher.Add(svc.Chdir)
+	var dirs []string
+	err = filepath.Walk(svc.Chdir, func(path string, info os.FileInfo, err error) error {
+		if info.IsDir() {
+			dirs = append(dirs, path)
+		}
+		return nil
+	})
+
+	for _, dir := range dirs {
+		err = watcher.Add(dir)
+		if err != nil {
+			fmt.Println(err)
+		}
+	}
 
 	go func() {
 		for {
