@@ -150,12 +150,28 @@ func (pm *PM) watch(svc *service) *Batcher {
 	}
 
 	var dirs []string
-	err = filepath.Walk(svc.Chdir, func(path string, info os.FileInfo, err error) error {
-		if info.IsDir() {
-			dirs = append(dirs, path)
-		}
-		return nil
-	})
+	getDirs := func(dir string) error {
+		err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+			if err != nil {
+				fmt.Println(err)
+			}
+			if info.IsDir() {
+				dirs = append(dirs, path)
+			}
+			return nil
+		})
+		return err
+	}
+
+	err = getDirs(svc.Chdir)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	err = getDirs("./shared")
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	for _, dir := range dirs {
 		err = watcher.Add(dir)
