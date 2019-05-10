@@ -168,7 +168,7 @@ func (pm *PM) watch(svc *service) *Batcher {
 		fmt.Println(err)
 	}
 
-	err = getDirs("./shared")
+	err = getDirs("./framework")
 	if err != nil {
 		fmt.Println(err)
 	}
