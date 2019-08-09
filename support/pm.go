@@ -2,6 +2,7 @@ package support
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -9,6 +10,7 @@ import (
 	"time"
 
 	"github.com/fsnotify/fsnotify"
+	"github.com/kvz/logstreamer"
 )
 
 type PM struct {
@@ -106,7 +108,9 @@ func (pm *PM) spawn(svc *service) {
 
 	svc.cmd = MakeCmd(svc.Start, svc.Chdir)
 	svc.cmd.Stdout = os.Stdout
-	svc.cmd.Stderr = os.Stderr
+	logger := log.New(os.Stderr, "", log.Ldate|log.Ltime)
+	logStreamerErr := logstreamer.NewLogstreamer(logger, svc.name+" ", true)
+	svc.cmd.Stderr = logStreamerErr
 
 	err := svc.cmd.Start()
 	if err != nil {
