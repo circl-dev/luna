@@ -1,3 +1,6 @@
+foldersToWatch:
+  - shared
+  - another
 services:
   svc_a:
     chdir: examples/service_a
@@ -5,9 +8,14 @@ services:
     start: ./svc1
     clean: rm -rf svc1
     watch: true
+    foldersToWatch:
+      - foo
+      - bar
   svc_b:
     chdir: examples/service_b
     build: go build -o svc2
     start: ./svc2
     clean: rm -rf svc2
     watch: true
+    foldersToWatch:
+      - baz

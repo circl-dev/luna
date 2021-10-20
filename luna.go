@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/gig/luna/cmd"
+	"github.com/protodev-site/luna/cmd"
 )
 
 var (

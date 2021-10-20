@@ -158,6 +158,7 @@ func (pm *PM) watch(svc *service) *Batcher {
 		err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 			if err != nil {
 				fmt.Println(err)
+				return err
 			}
 			if info.IsDir() {
 				dirs = append(dirs, path)
@@ -172,9 +173,16 @@ func (pm *PM) watch(svc *service) *Batcher {
 		fmt.Println(err)
 	}
 
-	err = getDirs("./framework")
-	if err != nil {
-		fmt.Println(err)
+	svc.FoldersToWatch = append(svc.FoldersToWatch, pm.config.FoldersToWatch...)
+
+	if len(svc.FoldersToWatch) > 0 {
+		fmt.Println("[WATCH]", strings.Join(svc.FoldersToWatch, ", "))
+		for _, dir := range svc.FoldersToWatch {
+			err = getDirs(dir)
+			if err != nil {
+				fmt.Println(err)
+			}
+		}
 	}
 
 	for _, dir := range dirs {

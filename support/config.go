@@ -13,6 +13,8 @@ type service struct {
 	Pack  string
 	Watch bool
 
+	FoldersToWatch []string
+
 	name string
 	cmd  *exec.Cmd
 
@@ -20,7 +22,8 @@ type service struct {
 }
 
 type Config struct {
-	Services map[string]*service
+	FoldersToWatch []string
+	Services       map[string]*service
 }
 
 func (c *Config) PopulateChanges(compareRange string) {
