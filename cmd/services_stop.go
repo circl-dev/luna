@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/protodev-site/luna/support"
+	"github.com/circl-dev/luna/support"
 )
 
 var (

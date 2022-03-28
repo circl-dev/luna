@@ -1,4 +1,4 @@
-module github.com/protodev-site/luna
+module github.com/circl-dev/luna
 
 go 1.16
 

@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/protodev-site/luna/support"
+	"github.com/circl-dev/luna/support"
 	"github.com/spf13/cobra"
 )
 
